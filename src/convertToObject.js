@@ -7,10 +7,10 @@
  */
 
 function convertToObject(sourceString) {
-  const answer = {};
-  const arrayString = sourceString.split(';');
+  const stylesObject = {};
+  const declarations = sourceString.split(';');
 
-  for (const item of arrayString) {
+  for (const item of declarations) {
     const trimmedItem = item.trim();
 
     if (trimmedItem !== '') {
@@ -19,12 +19,12 @@ function convertToObject(sourceString) {
         const key = trimmedItem.substring(0, firstColonIndex).trim();
         const value = trimmedItem.substring(firstColonIndex + 1).trim();
 
-        answer[key] = value;
+        stylesObject[key] = value;
       }
     }
   }
 
-  return answer;
+  return stylesObject;
 }
 
 module.exports = convertToObject;
