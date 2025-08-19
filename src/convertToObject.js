@@ -8,21 +8,15 @@
 
 function convertToObject(sourceString) {
   const stylesObject = {};
-  const declarations = sourceString.split(';');
+  const stylesArray = sourceString.split(';');
 
-  for (const item of declarations) {
-    const trimmedItem = item.trim();
+  stylesArray.forEach((style) => {
+    const [key, value] = style.split(':').map((item) => item.trim());
 
-    if (trimmedItem !== '') {
-      if (trimmedItem.includes(':')) {
-        const firstColonIndex = trimmedItem.indexOf(':');
-        const key = trimmedItem.substring(0, firstColonIndex).trim();
-        const value = trimmedItem.substring(firstColonIndex + 1).trim();
-
-        stylesObject[key] = value;
-      }
+    if (key && value) {
+      stylesObject[key] = value;
     }
-  }
+  });
 
   return stylesObject;
 }
